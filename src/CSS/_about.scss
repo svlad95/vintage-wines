@@ -1,0 +1,93 @@
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6em;
+  margin-top: 10em;
+  height: 100%;
+  z-index: 200;
+  h4 {
+    margin-bottom: -4em !important;
+  }
+  .tohani-section,
+  .moldova-section,
+  .recas-section {
+    height: auto;
+    width: 90%;
+    height: 50px;
+
+    .interact {
+      border: 1px solid rgba($brownColor, 0.2);
+      background: $yellowColor;
+      border-radius: 2px;
+      height: 50px !important;
+      display: flex;
+      height: auto;
+      align-items: center;
+      justify-content: space-between;
+
+      &:hover {
+        background-color: $greenColor;
+        color: $backgroundColor;
+        transition: 0.1s all;
+        cursor: pointer;
+        border: 1px solid $greenColor;
+      }
+      h5 {
+        padding: 10px;
+        transition: 0.1s all;
+      }
+      small {
+        display: flex;
+        align-items: center;
+        transition: 0.1s all;
+        i {
+          padding: 10px;
+          transition: 0.2s transform;
+          transform: rotate(0);
+        }
+      }
+    }
+    p {
+      min-width: 35ch;
+      font-size: 13px;
+      padding: 10px 20px;
+      transform: scale(0);
+      transition: 0.5s all;
+      transition: 0s opacity;
+      transform-origin: left;
+      &:nth-of-type(1) {
+        padding-top: 2em;
+      }
+    }
+    span {
+      display: flex;
+      font-size: 13px;
+      padding: 10px 20px;
+      text-align: left;
+    }
+  }
+}
+
+.rotate {
+  transition: 0.2s all !important;
+  transform: rotate(-90deg) !important;
+}
+
+.collapsed {
+  height: auto !important;
+
+  .interact {
+    background-color: $greenColor !important;
+    color: $backgroundColor !important;
+  }
+  p {
+    transition: 0.5s all !important;
+    transform: scale(1) !important;
+  }
+
+  span {
+    display: none !important;
+  }
+}

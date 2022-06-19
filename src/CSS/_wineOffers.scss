@@ -1,0 +1,200 @@
+@import './variables';
+
+.wine-offers-div {
+  background: $yellowColor;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 4em;
+  align-items: center;
+  opacity: 0;
+  animation: fade 1s;
+  animation-fill-mode: forwards;
+  // overflow: hidden !important;
+  margin-top: 10em;
+  padding: 1.5em;
+
+  h5 {
+    margin-top: -0.5em;
+    margin-bottom: -3em;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+  .filters-container {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: -3em;
+    position: relative;
+    width: 80px;
+    border-radius: 2px;
+    border: 1px solid $greenColor;
+    .filters-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      transition: color 0.1s;
+      cursor: pointer;
+      padding: 5px;
+    }
+    .close-filter-menu {
+      display: none;
+    }
+    .filter-options {
+      position: absolute;
+      transform: scale(0);
+      opacity: 0;
+      transition: 0s all;
+    }
+
+    i {
+      font-size: 15px;
+    }
+  }
+}
+
+.active {
+  flex-direction: column;
+  transition: 0s all !important;
+  width: 250px !important;
+  justify-content: center !important;
+  height: auto;
+  z-index: 1;
+  transform-origin: left;
+  background: $yellowColor;
+  color: $brownColor;
+  flex-direction: column !important;
+
+  .filters-icon {
+    display: flex;
+    align-items: center;
+
+    gap: 0.5em;
+    transition: color 0.1s !important;
+    cursor: auto !important;
+  }
+
+  .filter-options {
+    position: relative !important;
+    transform: scale(1) !important;
+    opacity: 1 !important;
+    transition: 0.5s all !important;
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    .filter-brand-name {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      span {
+        text-align: center;
+        padding: 10px 0px;
+        font-weight: 900;
+      }
+      .inputs {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        input {
+          margin-right: -15px;
+        }
+      }
+    }
+    .filter-color {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      span {
+        text-align: center;
+        padding: 10px 0px;
+        font-weight: 900;
+      }
+      .inputs {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        input {
+          margin-right: -20px;
+        }
+      }
+    }
+    .filter-type {
+      display: flex;
+      flex-direction: column;
+
+      span {
+        text-align: center;
+        padding: 10px 0px;
+        font-weight: 900;
+      }
+      .inputs {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .sweet-type,
+        .dry-type {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          input {
+            margin: 4px;
+          }
+        }
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-evenly;
+      button {
+        width: 45%;
+        align-self: center;
+        margin: 20px 0 10px 0;
+        background: rgba($brownColor, 1);
+        border-radius: 2px;
+        padding: 5px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        color: $backgroundColor;
+        transition: 0.3s all;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  .close-filter-menu {
+    position: absolute;
+    right: 10px;
+    color: $brownColor;
+    display: block !important;
+    cursor: pointer;
+    z-index: 30;
+    font-size: 20px;
+    top: 0;
+    &:hover {
+      color: $brownColor;
+      font-weight: bold;
+    }
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    transition: 0.5s all;
+  }
+  100% {
+    opacity: 1;
+    transition: 0.5s all;
+  }
+}

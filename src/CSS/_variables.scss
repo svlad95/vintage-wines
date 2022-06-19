@@ -1,0 +1,14 @@
+@import url('http://fonts.cdnfonts.com/css/im-fell-great-primer-sc');
+$font: 'IM FELL Great Primer SC', sans-serif;
+
+$backgroundColor: #fcfcfc;
+$brownColor: #4a332d;
+$greenColor: #999b84;
+$yellowColor: rgba(249, 242, 229, 0.5);
+
+@mixin flex($display, $direction, $justify, $align) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}

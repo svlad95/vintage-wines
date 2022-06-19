@@ -1,0 +1,47 @@
+.final-checkout {
+  height: 100vh;
+  width: 100%;
+  background: rgba($yellowColor, 1);
+  position: absolute;
+  top: 0;
+  z-index: 500000;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  transform: scale(0);
+  text-align: center;
+  button {
+    position: absolute;
+
+    top: 2em;
+    right: 1em;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 1em;
+    height: 300px;
+    h5 {
+      margin-top: -1em;
+      font-weight: 100;
+    }
+    label {
+      margin-bottom: -0.8em;
+    }
+
+    span {
+      font-size: 13px;
+    }
+    sup {
+      color: red;
+    }
+  }
+}
+
+.unhide {
+  transform: scale(1) !important;
+}
