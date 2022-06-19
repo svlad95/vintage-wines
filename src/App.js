@@ -1,6 +1,6 @@
+import '../src/CSS/style.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
-import '../src/CSS/style.css'
 import SpecialOffers from './components/SpecialOffers'
 import Contact from './components/Contact'
 import About from './components/About'
@@ -87,7 +87,10 @@ function App() {
     <Router>
       <Header cartItems={cartItems} onAdd={onAdd}></Header>
       <Routes>
-        <Route path="/" element={<SpecialOffers products={products} cartItems={cartItems} onAdd={onAdd} />} />
+        <Route
+          path="/vintage-wines"
+          element={<SpecialOffers products={products} cartItems={cartItems} onAdd={onAdd} />}
+        />
         <Route
           path="/checkout"
           element={
