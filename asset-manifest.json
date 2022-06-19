@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/vintage-wines/static/css/main.31d6cfe0.css",
-    "main.js": "/vintage-wines/static/js/main.f37f769f.js",
+    "main.css": "/vintage-wines/static/css/main.7a55162c.css",
+    "main.js": "/vintage-wines/static/js/main.98bbb97b.js",
     "static/js/787.6ebc50fc.chunk.js": "/vintage-wines/static/js/787.6ebc50fc.chunk.js",
     "static/media/AbsoluteVodka.png": "/vintage-wines/static/media/AbsoluteVodka.a7c4c9847b403fdc808a.png",
     "static/media/Jaggermeister.png": "/vintage-wines/static/media/Jaggermeister.ab5bca01b7de7ca9202e.png",
@@ -19,11 +19,12 @@
     "static/media/RedWine.png": "/vintage-wines/static/media/RedWine.149f349e82d15c9494c4.png",
     "static/media/RoseWine.png": "/vintage-wines/static/media/RoseWine.3e588777c65690024677.png",
     "index.html": "/vintage-wines/index.html",
-    "main.f37f769f.js.map": "/vintage-wines/static/js/main.f37f769f.js.map",
+    "main.7a55162c.css.map": "/vintage-wines/static/css/main.7a55162c.css.map",
+    "main.98bbb97b.js.map": "/vintage-wines/static/js/main.98bbb97b.js.map",
     "787.6ebc50fc.chunk.js.map": "/vintage-wines/static/js/787.6ebc50fc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.31d6cfe0.css",
-    "static/js/main.f37f769f.js"
+    "static/css/main.7a55162c.css",
+    "static/js/main.98bbb97b.js"
   ]
 }
