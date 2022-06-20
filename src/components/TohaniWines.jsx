@@ -7,10 +7,27 @@ function TohaniWines(props) {
   let currencySign = '' // Currency sign variable which changes depends on the "currency" global variable
   const [displayFilters, setDisplayFilters] = useState(false)
   const [activeFilters, setActiveFilters] = useState([])
-  console.log(activeFilters)
 
   const { products, onAdd, cartItems } = props
 
+  //Sclipire de geniu useEffect to make sure that the colors are displayed first in the filters array
+  useEffect(() => {
+    if (activeFilters.indexOf('Rose') > 0) {
+      activeFilters.splice(activeFilters.indexOf('Rose'), 1)
+      activeFilters.unshift('Rose')
+      console.log(activeFilters)
+    }
+    if (activeFilters.indexOf('White') > 0) {
+      activeFilters.splice(activeFilters.indexOf('White'), 1)
+      activeFilters.unshift('White')
+      console.log(activeFilters)
+    }
+    if (activeFilters.indexOf('Red') > 0) {
+      activeFilters.splice(activeFilters.indexOf('Red'), 1)
+      activeFilters.unshift('Red')
+      console.log(activeFilters)
+    }
+  }, [activeFilters])
   // Function that checks the currency variable and assign the currencySign variable
   function checkForCurrency() {
     return currency === 'dollar'
@@ -62,6 +79,7 @@ function TohaniWines(props) {
     activeFilters.filter((filter) => {
       products.forEach((product) => {
         if (redColorCheckbox.checked || whiteColorCheckbox.checked || roseColorCheckbox.checked) {
+          //
           if (
             !sweetTypeCheckbox.checked &&
             !semiSweetTypeCheckbox.checked &&
@@ -75,12 +93,14 @@ function TohaniWines(props) {
             if (product.color.includes(filter)) {
               colors.push(product)
             }
+
             colors.forEach((item) => {
               if (item.type.split(' ').indexOf(filter) > -1) {
                 resultArray.push(item)
               }
             })
           }
+          //
         } else if (product.type.split(' ').indexOf(filter) > -1) {
           resultArray.push(product)
         }

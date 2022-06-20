@@ -21,7 +21,24 @@ function MoldovaWines(props) {
       : ''
   }
   checkForCurrency()
-
+  //Sclipire de geniu useEffect to make sure that the colors are displayed first in the filters array
+  useEffect(() => {
+    if (activeFilters.indexOf('Rose') > 0) {
+      activeFilters.splice(activeFilters.indexOf('Rose'), 1)
+      activeFilters.unshift('Rose')
+      console.log(activeFilters)
+    }
+    if (activeFilters.indexOf('White') > 0) {
+      activeFilters.splice(activeFilters.indexOf('White'), 1)
+      activeFilters.unshift('White')
+      console.log(activeFilters)
+    }
+    if (activeFilters.indexOf('Red') > 0) {
+      activeFilters.splice(activeFilters.indexOf('Red'), 1)
+      activeFilters.unshift('Red')
+      console.log(activeFilters)
+    }
+  }, [activeFilters])
   // Function to uncheck all the checked checkboxes
   function resetCheckboxes() {
     let checkboxes = Array.from(document.querySelectorAll('input[type=checkbox]'))
