@@ -1,7 +1,7 @@
-@import url("http://fonts.cdnfonts.com/css/im-fell-great-primer-sc");
-@import url("http://fonts.cdnfonts.com/css/im-fell-great-primer-sc");
-@import url("http://fonts.cdnfonts.com/css/im-fell-great-primer-sc");
-@import url("http://fonts.cdnfonts.com/css/im-fell-great-primer-sc");
+@import url("https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100;200;300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100;200;300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100;200;300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100;200;300&display=swap");
 .header-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1490,7 +1490,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  font-family: "IM FELL Great Primer SC", sans-serif;
+  font-family: "Grenze Gotisch", cursive;
   -webkit-transition: 0.3s all;
   transition: 0.3s all;
 }
