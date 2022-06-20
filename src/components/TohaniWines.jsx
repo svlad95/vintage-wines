@@ -7,6 +7,7 @@ function TohaniWines(props) {
   let currencySign = '' // Currency sign variable which changes depends on the "currency" global variable
   const [displayFilters, setDisplayFilters] = useState(false)
   const [activeFilters, setActiveFilters] = useState([])
+  console.log(activeFilters)
 
   const { products, onAdd, cartItems } = props
 

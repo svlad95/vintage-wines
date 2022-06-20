@@ -80,6 +80,7 @@ function Header(props) {
               className={isMobileMenuOpened ? 'fa-solid fa-xmark' : 'fa-solid fa-bars-staggered'}
               onClick={() => {
                 setisMobileMenuOpened(!isMobileMenuOpened)
+                setisSearchDivDisplayed(false)
               }}
             ></i>
           </a>
