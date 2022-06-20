@@ -88,7 +88,7 @@ function App() {
       <Header cartItems={cartItems} onAdd={onAdd}></Header>
       <Routes>
         <Route
-          path="/vintage-wines"
+          path="/special-offers"
           element={<SpecialOffers products={products} cartItems={cartItems} onAdd={onAdd} />}
         />
         <Route

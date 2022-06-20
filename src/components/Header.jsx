@@ -85,7 +85,7 @@ function Header(props) {
           </a>
           <div className="title-div">
             <Link
-              to="/vintage-wines"
+              to="/special-offers"
               id="title"
               onClick={() => {
                 setisMobileMenuOpened(false)
@@ -252,7 +252,7 @@ function Header(props) {
       {/* Mobile menu */}
       <div className={isMobileMenuOpened ? 'mobile-menu' : 'mobile-menu inactive'}>
         <Link
-          to="/vintage-wines"
+          to="/special-offers"
           onClick={() => {
             setisMobileMenuOpened(false)
             setisSearchDivDisplayed(false)
