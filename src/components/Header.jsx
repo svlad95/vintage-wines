@@ -9,6 +9,7 @@ function Header(props) {
   const [isMobileMenuOpened, setisMobileMenuOpened] = useState()
   const [isSearchDivDisplayed, setisSearchDivDisplayed] = useState(false)
   let searchInput = document.getElementById('search-input')
+
   const { products } = data
 
   const [searchTerm, setSearchTerm] = useState('')
@@ -89,6 +90,7 @@ function Header(props) {
               onClick={() => {
                 setisMobileMenuOpened(false)
                 setisSearchDivDisplayed(false)
+
                 searchInput.value = ''
               }}
             >
