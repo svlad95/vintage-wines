@@ -5,16 +5,25 @@
   align-items: flex-start;
   justify-content: flex-start;
   height: calc(100vh - 10.5em);
-
   padding-top: 1em;
   span {
     align-self: center;
   }
 
-  .checkout-container {
-    overflow: hidden;
+  .checkout-container {    
     overflow-y: auto;
-    max-height: 215px;
+    height: 195px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    .checkout-products {
+      height: 100%;
+    }
+    
+    
+    
+    
   }
   .checkout-summary {
     width: 95%;

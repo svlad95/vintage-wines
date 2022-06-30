@@ -53,7 +53,7 @@ function CartProduct(props) {
       </div>
       <p>
         <img src={product.img} alt={product.name} width="30px" />
-        {product.cartQty} x {product.name} {product.color} {product.type} {product.volume} ={' '}
+        {product.cartQty} x {product.name} {product.color} {product.type} {`${product.volume}l`} ={' '}
         {currency === 'ron'
           ? (product.price * product.cartQty).toFixed(2)
           : currency === 'euro'

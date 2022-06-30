@@ -111,31 +111,22 @@
       border-left: 0;
       border-right: 0;
       transition: 0.8s all;
-
-      &:focus {
-        width: 100%;
-        opacity: 1;
-        &::placeholder {
-          visibility: hidden;
-        }
-      }
-      &:hover {
-        width: 100%;
-        opacity: 1;
-      }
     }
 
     i {
       color: $greenColor;
       font-size: 15px;
       cursor: pointer;
-      &:hover + input {
-        width: 100%;
-        opacity: 1;
-      }
+
       &:hover {
         color: $brownColor;
       }
+    }
+    #close-search-input {
+      transform: scale(0);
+      position: absolute;
+      right: 5px;
+      transform: 0.3s all;
     }
   }
 }
@@ -188,6 +179,9 @@
         padding-top: 2px;
         text-align: center;
       }
+    }
+    .no-results-div {
+      align-self: center;
     }
   }
 

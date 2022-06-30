@@ -1,6 +1,6 @@
+import { MobileMenu } from './MobileMenu'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import Product from '../components/Product'
 import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../components/actions/actions'
 import data from './data'
@@ -20,6 +20,112 @@ function Header(props) {
   const displayedCartItems = useSelector((state) => state.displayedCartItems)
   const { cartItems, onAdd } = props
 
+  const searchBarProductsFiltered = products
+    .filter((value) => {
+      let combinationOne = `${value.name.toLowerCase()} ${value.type.toLowerCase()} ${value.color.toLowerCase()}`
+      let combinationTwo = `${value.name.toLowerCase()} ${value.color.toLowerCase()} ${value.type.toLowerCase()}`
+      let combinationThree = `${value.color.toLowerCase()} ${value.type.toLowerCase()} ${value.name.toLowerCase()}`
+      let combinationFour = `${value.color.toLowerCase()} ${value.name.toLowerCase()} ${value.type.toLowerCase()}`
+      let combinationFive = `${value.type.toLowerCase()} ${value.name.toLowerCase()} ${value.color.toLowerCase()}`
+      let combinationSix = `${value.type.toLowerCase()} ${value.color.toLowerCase()} ${value.name.toLowerCase()}`
+
+      let sortedCombinationOne = combinationOne.toLowerCase().replace('-', ' ').replace(/ /g, '')
+      let sortedCombinationTwo = combinationTwo.toLowerCase().replace('-', ' ').replace(/ /g, '')
+      let sortedCombinationThree = combinationThree.toLowerCase().replace('-', ' ').replace(/ /g, '')
+      let sortedCombinationFour = combinationFour.toLowerCase().replace('-', ' ').replace(/ /g, '')
+      let sortedCombinationFive = combinationFive.toLowerCase().replace('-', ' ').replace(/ /g, '')
+      let sortedCombinationSix = combinationSix.toLowerCase().replace('-', ' ').replace(/ /g, '')
+
+      if (searchTerm === '') {
+        return value
+      } else if (value.name.toLowerCase().includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
+        return value
+      } else if (value.type.toLowerCase().includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
+        return value
+      } else if (value.color.toLowerCase().includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
+        return value
+      } else if (sortedCombinationOne.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
+        return value
+      } else if (sortedCombinationTwo.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
+        return value
+      } else if (sortedCombinationThree.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
+        return value
+      } else if (sortedCombinationFour.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
+        return value
+      } else if (sortedCombinationFive.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
+        return value
+      } else if (sortedCombinationSix.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
+        return value
+      }
+    })
+    .map((product, key) => {
+      return (
+        <div className="search-product" key={key}>
+          <img src={product.img} width="20px" alt="" />
+
+          <p>
+            {`${product.name} `}
+            {`${product.color} `}
+            {`${product.type.replace('-', ' ')} `}
+            {`(${product.volume}l)`}
+          </p>
+          <small>{`${
+            currency === 'ron'
+              ? product.price.toFixed(2)
+              : currency === 'euro'
+              ? Math.abs((product.price / 4.95).toFixed(2))
+              : currency === 'dollar'
+              ? Math.abs((product.price / 4.69).toFixed(2))
+              : ''
+          } ${currencySign}`}</small>
+
+          <button
+            className="search-add-to-cart"
+            onClick={() => {
+              let isInCart = false
+              //Check if cart is empty and if it is, add the product to the cart
+              if (cartItems.length === 0) {
+                onAdd(product)
+                dispatch(actions.increaseCart(1))
+              } else {
+                //if the cart is not empty, loop through the cart
+                cartItems.forEach((item) => {
+                  //if the item.id of the itemCart is equal to current product id, set the isInCart variable to true
+                  if (item.id === product.id) {
+                    isInCart = true
+                    //if the cartQty of the item is smaller than product overall quantity, increase the product qty in cart
+                    if (item.cartQty < product.quantity) {
+                      onAdd(product)
+                      dispatch(actions.increaseCart(1))
+                    } else {
+                      //if the cartQty of the item is equal to the product overall quantity, display an alert (error)
+                      alert(
+                        `There are only ${product.quantity} ${
+                          product.volume !== 10 ? 'bottles' : 'boxes'
+                        } of ${product.name} ${product.color} ${product.type} (${
+                          product.volume
+                        }L) available right now.`,
+                      )
+                    }
+                  }
+                })
+
+                //if the products were not added in the cart before, but there are other products, we can add it
+                if (isInCart === false) {
+                  onAdd(product)
+                  dispatch(actions.increaseCart(1))
+                }
+              }
+            }}
+          >
+            Add
+          </button>
+        </div>
+      )
+    })
+
+   
+
   function checkForCurrency() {
     return currency === 'dollar'
       ? (currencySign = '$')
@@ -30,6 +136,23 @@ function Header(props) {
       : ''
   }
 
+  function showSearchMenu() {
+    let searchInputField = document.getElementById('search-input')
+    let closeSearchInputIcon = document.getElementById('close-search-input')
+    closeSearchInputIcon.style.transform = 'scale(1)'
+    searchInputField.style.width = '100%'
+    searchInputField.style.opacity = 1
+    searchInputField.focus()
+  }
+  function hideSearchMenu() {
+    let searchInputField = document.getElementById('search-input')
+    let closeSearchInputIcon = document.getElementById('close-search-input')
+    closeSearchInputIcon.style.transform = 'scale(0)'
+    searchInputField.style.width = '0px'
+    searchInputField.style.opacity = 0
+    setisSearchDivDisplayed(false)
+    searchInput.value = ''
+  }
   checkForCurrency()
 
   // UsEffect hook to show/hide the search div
@@ -81,18 +204,18 @@ function Header(props) {
               onClick={() => {
                 setisMobileMenuOpened(!isMobileMenuOpened)
                 setisSearchDivDisplayed(false)
+                hideSearchMenu()
               }}
             ></i>
           </a>
           <div className="title-div">
             <Link
-              to="/special-offers"
+              to="/"
               id="title"
               onClick={() => {
                 setisMobileMenuOpened(false)
                 setisSearchDivDisplayed(false)
-
-                searchInput.value = ''
+                hideSearchMenu()
               }}
             >
               <h1 className="title">Vintage Wines</h1>
@@ -106,7 +229,7 @@ function Header(props) {
               onClick={() => {
                 setisMobileMenuOpened(false)
                 setisSearchDivDisplayed(false)
-                searchInput.value = ''
+                hideSearchMenu()
               }}
             >
               <i className="fa-solid fa-cart-shopping"></i>
@@ -117,7 +240,12 @@ function Header(props) {
           </div>
         </header>
         <div className="search-bar">
-          <i className="fa-solid fa-magnifying-glass"></i>
+          <i
+            className="fa-solid fa-magnifying-glass"
+            onClick={() => {
+              showSearchMenu()
+            }}
+          ></i>
           <input
             type="text"
             placeholder="Search by product name, type or color"
@@ -132,225 +260,29 @@ function Header(props) {
             }}
             id="search-input"
           />
+          <i
+            className="fa-solid fa-xmark"
+            id="close-search-input"
+            onClick={() => {
+              hideSearchMenu()
+            }}
+          ></i>
         </div>
       </div>
       {/* Search Results Div*/}
       <div className="search-results" id="search-results">
-        <i
-          className="fa-solid fa-xmark"
-          onClick={() => {
-            setisSearchDivDisplayed(false)
-
-            searchInput.value = ''
-          }}
-        ></i>
         <div className="search-results-container">
-          {products
-            .filter((value) => {
-              let combinationOne = `${value.name.toLowerCase()} ${value.type.toLowerCase()} ${value.color.toLowerCase()}`
-              let combinationTwo = `${value.name.toLowerCase()} ${value.color.toLowerCase()} ${value.type.toLowerCase()}`
-              let combinationThree = `${value.color.toLowerCase()} ${value.type.toLowerCase()} ${value.name.toLowerCase()}`
-              let combinationFour = `${value.color.toLowerCase()} ${value.name.toLowerCase()} ${value.type.toLowerCase()}`
-              let combinationFive = `${value.type.toLowerCase()} ${value.name.toLowerCase()} ${value.color.toLowerCase()}`
-              let combinationSix = `${value.type.toLowerCase()} ${value.color.toLowerCase()} ${value.name.toLowerCase()}`
-
-              let sortedCombinationOne = combinationOne.toLowerCase().replace('-', ' ').replace(/ /g, '')
-              let sortedCombinationTwo = combinationTwo.toLowerCase().replace('-', ' ').replace(/ /g, '')
-              let sortedCombinationThree = combinationThree.toLowerCase().replace('-', ' ').replace(/ /g, '')
-              let sortedCombinationFour = combinationFour.toLowerCase().replace('-', ' ').replace(/ /g, '')
-              let sortedCombinationFive = combinationFive.toLowerCase().replace('-', ' ').replace(/ /g, '')
-              let sortedCombinationSix = combinationSix.toLowerCase().replace('-', ' ').replace(/ /g, '')
-
-              if (searchTerm === '') {
-                return value
-              } else if (value.name.toLowerCase().includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
-                return value
-              } else if (value.type.toLowerCase().includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
-                return value
-              } else if (value.color.toLowerCase().includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
-                return value
-              } else if (sortedCombinationOne.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
-                return value
-              } else if (sortedCombinationTwo.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
-                return value
-              } else if (sortedCombinationThree.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
-                return value
-              } else if (sortedCombinationFour.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
-                return value
-              } else if (sortedCombinationFive.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
-                return value
-              } else if (sortedCombinationSix.includes(searchTerm.toLowerCase().replace(/ /g, ''))) {
-                return value
-              }
-            })
-            .map((product, key) => {
-              return (
-                <div className="search-product" key={key}>
-                  <img src={product.img} width="20px" alt="" />
-
-                  <p>
-                    {`${product.name} `}
-                    {`${product.color} `}
-                    {`${product.type.replace('-', ' ')} `}
-                    {`(${product.volume}l)`}
-                  </p>
-                  <small>{`${
-                    currency === 'ron'
-                      ? product.price.toFixed(2)
-                      : currency === 'euro'
-                      ? Math.abs((product.price / 4.95).toFixed(2))
-                      : currency === 'dollar'
-                      ? Math.abs((product.price / 4.69).toFixed(2))
-                      : ''
-                  } ${currencySign}`}</small>
-
-                  <button
-                    className="search-add-to-cart"
-                    onClick={() => {
-                      let isInCart = false
-                      //Check if cart is empty and if it is, add the product to the cart
-                      if (cartItems.length === 0) {
-                        onAdd(product)
-                        dispatch(actions.increaseCart(1))
-                      } else {
-                        //if the cart is not empty, loop through the cart
-                        cartItems.forEach((item) => {
-                          //if the item.id of the itemCart is equal to current product id, set the isInCart variable to true
-                          if (item.id === product.id) {
-                            isInCart = true
-                            //if the cartQty of the item is smaller than product overall quantity, increase the product qty in cart
-                            if (item.cartQty < product.quantity) {
-                              onAdd(product)
-                              dispatch(actions.increaseCart(1))
-                            } else {
-                              //if the cartQty of the item is equal to the product overall quantity, display an alert (error)
-                              alert(
-                                `There are only ${product.quantity} ${
-                                  product.volume !== 10 ? 'bottles' : 'boxes'
-                                } of ${product.name} ${product.color} ${product.type} (${
-                                  product.volume
-                                }L) available right now.`,
-                              )
-                            }
-                          }
-                        })
-
-                        //if the products were not added in the cart before, but there are other products, we can add it
-                        if (isInCart === false) {
-                          onAdd(product)
-                          dispatch(actions.increaseCart(1))
-                        }
-                      }
-                    }}
-                  >
-                    Add
-                  </button>
-                </div>
-              )
-            })}
+          {searchBarProductsFiltered.length === 0 ? <div className="no-results-div">No results found</div> : searchBarProductsFiltered}
         </div>
       </div>
       {/* Mobile menu */}
-      <div className={isMobileMenuOpened ? 'mobile-menu' : 'mobile-menu inactive'}>
-        <Link
-          to="/special-offers"
-          onClick={() => {
-            setisMobileMenuOpened(false)
-            setisSearchDivDisplayed(false)
-            searchInput.value = ''
-          }}
-        >
-          Home (Special Offers)
-        </Link>
-        <Link
-          to="/tohani-wines"
-          onClick={() => {
-            setisMobileMenuOpened(false)
-            setisSearchDivDisplayed(false)
-            searchInput.value = ''
-          }}
-        >
-          Tohani Wines
-        </Link>
-        <Link
-          to="/moldova-wines"
-          onClick={() => {
-            setisMobileMenuOpened(false)
-            setisSearchDivDisplayed(false)
-            searchInput.value = ''
-          }}
-        >
-          Moldova Wines
-        </Link>
-        <Link
-          to="/recas-wines"
-          onClick={() => {
-            setisMobileMenuOpened(false)
-            setisSearchDivDisplayed(false)
-            searchInput.value = ''
-          }}
-        >
-          Recas Wines
-        </Link>
-
-        <Link
-          to="/about"
-          onClick={() => {
-            setisMobileMenuOpened(false)
-            setisSearchDivDisplayed(false)
-            searchInput.value = ''
-          }}
-        >
-          About
-        </Link>
-        <Link
-          to="/contact"
-          onClick={() => {
-            setisMobileMenuOpened(false)
-            setisSearchDivDisplayed(false)
-            searchInput.value = ''
-          }}
-        >
-          Contact
-        </Link>
-        <div className="currency-selector">
-          <p className="currency-text-icon">
-            Currency <i className="fa-solid fa-angle-down"></i>
-          </p>
-          <div className="currency-inputs">
-            <input
-              type="radio"
-              name="currency"
-              defaultChecked={true}
-              onClick={() => {
-                dispatch(actions.convertToRon('ron'))
-                setisMobileMenuOpened(false)
-              }}
-            />
-            ron
-            <input
-              type="radio"
-              name="currency"
-              id=""
-              onClick={() => {
-                dispatch(actions.convertToEur('euro'))
-                setisMobileMenuOpened(false)
-              }}
-            />
-            eur
-            <input
-              type="radio"
-              name="currency"
-              id=""
-              onClick={() => {
-                dispatch(actions.convertToUsd('dollar'))
-                setisMobileMenuOpened(false)
-              }}
-            />
-            usd
-          </div>
-        </div>
-      </div>
+      <MobileMenu
+        isMobileMenuOpened={isMobileMenuOpened}
+        setisMobileMenuOpened={setisMobileMenuOpened}
+        setisSearchDivDisplayed={setisSearchDivDisplayed}
+        dispatch={dispatch}
+        hideSearchMenu={hideSearchMenu}
+      />
     </>
   )
 }

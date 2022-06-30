@@ -15,7 +15,7 @@ function SpecialOffers(props) {
       : currency === 'euro'
       ? (currencySign = '€')
       : currency === 'ron'
-      ? (currencySign = 'ron')
+      ? (currencySign = 'RON')
       : ''
   }
 

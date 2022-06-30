@@ -15,6 +15,7 @@ function App() {
   const { products } = data
 
   const [cartItems, setCartItems] = useState([])
+document.addEventListener('touchstart', function() {},true)
 
   // Function to add products to cart
   const onAdd = (product) => {
@@ -88,7 +89,7 @@ function App() {
       <Header cartItems={cartItems} onAdd={onAdd}></Header>
       <Routes>
         <Route
-          path="/special-offers"
+          path="/"
           element={<SpecialOffers products={products} cartItems={cartItems} onAdd={onAdd} />}
         />
         <Route

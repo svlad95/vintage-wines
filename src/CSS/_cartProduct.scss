@@ -3,9 +3,10 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
-  justify-content: flex-start;
-  padding: 5px 0px;
+  height: 65px;
+  justify-content: flex-start;  
   border-bottom: 1px solid rgba($greenColor, 0.3);
+  
 
   p {
     display: flex;
@@ -21,6 +22,7 @@
     justify-content: center;
     width: 25px;
     height: 25px;
+    gap: 2px;
 
     margin-left: 5px;
     button {
@@ -38,7 +40,7 @@
 
       color: #1dd1a1;
       border: 1px solid #1dd1a1;
-      font-size: 15px;
+      font-size: 13px;
       &:hover {
         background: #1dd1a1;
         color: black;
@@ -48,7 +50,7 @@
       background: none;
       color: #fc912e;
       border: 1px solid #fc912e;
-      font-size: 15px;
+      font-size: 13px;
       &:hover {
         background: #fc912e;
         color: black;
@@ -72,7 +74,5 @@
     }
   }
 
-  &:hover {
-    background: rgba($yellowColor, 0.6);
-  }
+  
 }

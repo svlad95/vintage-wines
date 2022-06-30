@@ -15,17 +15,14 @@ function TohaniWines(props) {
     if (activeFilters.indexOf('Rose') > 0) {
       activeFilters.splice(activeFilters.indexOf('Rose'), 1)
       activeFilters.unshift('Rose')
-      console.log(activeFilters)
     }
     if (activeFilters.indexOf('White') > 0) {
       activeFilters.splice(activeFilters.indexOf('White'), 1)
       activeFilters.unshift('White')
-      console.log(activeFilters)
     }
     if (activeFilters.indexOf('Red') > 0) {
       activeFilters.splice(activeFilters.indexOf('Red'), 1)
       activeFilters.unshift('Red')
-      console.log(activeFilters)
     }
   }, [activeFilters])
   // Function that checks the currency variable and assign the currencySign variable
@@ -35,7 +32,7 @@ function TohaniWines(props) {
       : currency === 'euro'
       ? (currencySign = '€')
       : currency === 'ron'
-      ? (currencySign = 'ron')
+      ? (currencySign = 'RON')
       : ''
   }
   checkForCurrency()
@@ -293,35 +290,39 @@ function TohaniWines(props) {
           </div>
         </div>
 
-        {copyOfProducts.map((product) => {
-          if (product.name === 'Tohani')
-            return (
-              <Product
-                onAdd={onAdd}
-                cartItems={cartItems}
-                product={product}
-                id={product.id}
-                key={product.id}
-                name={product.name}
-                type={product.type}
-                color={product.color}
-                volume={product.volume}
-                img={product.img}
-                imgWidth={product.imgWidth}
-                currencySign={currencySign}
-                totalQuantity={product.totalQuantity}
-                price={
-                  currency === 'ron'
-                    ? product.price
-                    : currency === 'euro'
-                    ? Math.abs((product.price / 4.95).toFixed(2))
-                    : currency === 'dollar'
-                    ? Math.abs((product.price / 4.69).toFixed(2))
-                    : ''
-                }
-              />
-            )
-        })}
+        {copyOfProducts.length === 0 ? (
+          <div>No results found</div>
+        ) : (
+          copyOfProducts.map((product) => {
+            if (product.name === 'Tohani')
+              return (
+                <Product
+                  onAdd={onAdd}
+                  cartItems={cartItems}
+                  product={product}
+                  id={product.id}
+                  key={product.id}
+                  name={product.name}
+                  type={product.type}
+                  color={product.color}
+                  volume={product.volume}
+                  img={product.img}
+                  imgWidth={product.imgWidth}
+                  currencySign={currencySign}
+                  totalQuantity={product.totalQuantity}
+                  price={
+                    currency === 'ron'
+                      ? product.price
+                      : currency === 'euro'
+                      ? Math.abs((product.price / 4.95).toFixed(2))
+                      : currency === 'dollar'
+                      ? Math.abs((product.price / 4.69).toFixed(2))
+                      : ''
+                  }
+                />
+              )
+          })
+        )}
       </div>
     </>
   )

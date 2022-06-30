@@ -16,7 +16,7 @@ function Checkout(props) {
       : currency === 'euro'
       ? (currencySign = '€')
       : currency === 'ron'
-      ? (currencySign = 'ron')
+      ? (currencySign = 'RON')
       : ''
   }
   checkForCurrency()
@@ -49,6 +49,7 @@ function Checkout(props) {
           <span>Cart is empty</span>
         ) : (
           <div className="checkout-container">
+            <div className="checkout-products">
             {cartItems.map((product) => {
               return (
                 <div className="cart-product" key={product.id}>
@@ -65,6 +66,7 @@ function Checkout(props) {
                 </div>
               )
             })}
+            </div>
           </div>
         )}
 
