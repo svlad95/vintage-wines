@@ -39,21 +39,11 @@
       color: $brownColor;
 
       cursor: pointer;
-      &:hover {
-        color: $greenColor;
-        transition: 0.3s all;
-      }
 
       i {
         font-size: 17px;
         width: 15px;
         height: 15px;
-      }
-    }
-
-    #title {
-      &:hover {
-        color: $brownColor;
       }
     }
   }
@@ -92,7 +82,7 @@
 
   .search-bar {
     width: 90%;
-    margin: 1em 0;
+    margin-top: 1em;
     position: relative;
     display: flex;
     align-items: center;
@@ -108,25 +98,24 @@
       opacity: 0;
       text-align: center;
       border: 1px solid $greenColor;
-      border-left: 0;
-      border-right: 0;
+      border-radius: 3px;
       transition: 0.8s all;
+      border-radius: 0px;
+      margin-left: 10px;
+      box-shadow: 0px 0px 2px 1px rgba($brownColor, 0.2);
     }
 
     i {
       color: $greenColor;
       font-size: 15px;
       cursor: pointer;
-
-      &:hover {
-        color: $brownColor;
-      }
     }
     #close-search-input {
       transform: scale(0);
       position: absolute;
       right: 5px;
       transform: 0.3s all;
+      font-size: 12px;
     }
   }
 }

@@ -15,7 +15,7 @@ function App() {
   const { products } = data
 
   const [cartItems, setCartItems] = useState([])
-document.addEventListener('touchstart', function() {},true)
+  document.addEventListener('touchstart', function () {}, true)
 
   // Function to add products to cart
   const onAdd = (product) => {
@@ -88,34 +88,14 @@ document.addEventListener('touchstart', function() {},true)
     <Router>
       <Header cartItems={cartItems} onAdd={onAdd}></Header>
       <Routes>
-        <Route
-          path="/"
-          element={<SpecialOffers products={products} cartItems={cartItems} onAdd={onAdd} />}
-        />
+        <Route path="/" element={<SpecialOffers products={products} cartItems={cartItems} onAdd={onAdd} />} />
         <Route
           path="/checkout"
-          element={
-            <Checkout
-              products={products}
-              cartItems={cartItems}
-              onAdd={onAdd}
-              onRemove={onRemove}
-              removeFromCart={removeFromCart}
-            />
-          }
+          element={<Checkout products={products} cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} removeFromCart={removeFromCart} />}
         />
-        <Route
-          path="/tohani-wines"
-          element={<TohaniWines products={products} cartItems={cartItems} onAdd={onAdd} />}
-        />
-        <Route
-          path="/moldova-wines"
-          element={<MoldovaWines products={products} cartItems={cartItems} onAdd={onAdd} />}
-        />
-        <Route
-          path="/recas-wines"
-          element={<RecasWines products={products} cartItems={cartItems} onAdd={onAdd} />}
-        />
+        <Route path="/tohani-wines" element={<TohaniWines products={products} cartItems={cartItems} onAdd={onAdd} />} />
+        <Route path="/moldova-wines" element={<MoldovaWines products={products} cartItems={cartItems} onAdd={onAdd} />} />
+        <Route path="/recas-wines" element={<RecasWines products={products} cartItems={cartItems} onAdd={onAdd} />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

@@ -12,13 +12,7 @@ function MoldovaWines(props) {
 
   // Function that checks the currency variable and assign the currencySign variable
   function checkForCurrency() {
-    return currency === 'dollar'
-      ? (currencySign = '$')
-      : currency === 'euro'
-      ? (currencySign = '€')
-      : currency === 'ron'
-      ? (currencySign = 'RON')
-      : ''
+    return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'RON') : ''
   }
   checkForCurrency()
   //Sclipire de geniu useEffect to make sure that the colors are displayed first in the filters array
@@ -78,12 +72,7 @@ function MoldovaWines(props) {
     activeFilters.filter((filter) => {
       products.forEach((product) => {
         if (redColorCheckbox.checked || whiteColorCheckbox.checked || roseColorCheckbox.checked) {
-          if (
-            !sweetTypeCheckbox.checked &&
-            !semiSweetTypeCheckbox.checked &&
-            !dryTypeCheckbox.checked &&
-            !semiDryTypeCheckbox.checked
-          ) {
+          if (!sweetTypeCheckbox.checked && !semiSweetTypeCheckbox.checked && !dryTypeCheckbox.checked && !semiDryTypeCheckbox.checked) {
             if (product.color.includes(filter)) {
               resultArray.push(product)
             }
@@ -103,9 +92,7 @@ function MoldovaWines(props) {
       })
     })
 
-    setCopyOfProducts(
-      activeFilters.length === 0 ? products.map((product) => product) : [...new Set(resultArray)],
-    )
+    setCopyOfProducts(activeFilters.length === 0 ? products.map((product) => product) : [...new Set(resultArray)])
   }
 
   return (

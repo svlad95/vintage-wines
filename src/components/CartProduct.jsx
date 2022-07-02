@@ -9,13 +9,7 @@ function CartProduct(props) {
   const dispatch = useDispatch()
 
   function checkForCurrency() {
-    return currency === 'dollar'
-      ? (currencySign = '$')
-      : currency === 'euro'
-      ? (currencySign = '€')
-      : currency === 'ron'
-      ? (currencySign = 'ron')
-      : ''
+    return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'ron') : ''
   }
 
   checkForCurrency()
@@ -32,9 +26,9 @@ function CartProduct(props) {
               dispatch(actions.increaseCart(1))
             } else {
               alert(
-                `There are only ${product.quantity} ${product.volume !== 10 ? 'bottles' : 'boxes'} of ${
-                  product.name
-                } ${product.color} ${product.type} (${product.volume}L) available right now.`,
+                `There are only ${product.quantity} ${product.volume !== 10 ? 'bottles' : 'boxes'} of ${product.name} ${product.color} ${product.type} (${
+                  product.volume
+                }L) available right now.`,
               )
             }
           }}

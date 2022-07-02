@@ -39,9 +39,7 @@ function Product(props) {
                     dispatch(actions.increaseCart(1))
                   } else {
                     //if the cartQty of the item is equal to the product overall quantity, display an alert (error)
-                    alert(
-                      `There are only ${product.quantity} bottles of ${product.name} available right now.`,
-                    )
+                    alert(`There are only ${product.quantity} bottles of ${product.name} available right now.`)
                   }
                 }
               })

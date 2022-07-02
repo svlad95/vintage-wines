@@ -2,14 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import * as actions from '../components/actions/actions'
 
-export function MobileMenu({
-  isMobileMenuOpened,
-  setisMobileMenuOpened,
-  setisSearchDivDisplayed,
-  dispatch,
-  hideSearchMenu,
-}) {
-  
+export function MobileMenu({ isMobileMenuOpened, setisMobileMenuOpened, setisSearchDivDisplayed, dispatch, hideSearchMenu, setIsSearchIconClicked }) {
   return (
     <div className={isMobileMenuOpened ? 'mobile-menu' : 'mobile-menu inactive'}>
       <Link
@@ -17,6 +10,7 @@ export function MobileMenu({
         onClick={() => {
           setisMobileMenuOpened(false)
           setisSearchDivDisplayed(false)
+          setIsSearchIconClicked(false)
           hideSearchMenu()
         }}
       >
@@ -27,6 +21,7 @@ export function MobileMenu({
         onClick={() => {
           setisMobileMenuOpened(false)
           setisSearchDivDisplayed(false)
+          setIsSearchIconClicked(false)
           hideSearchMenu()
         }}
       >
@@ -37,6 +32,7 @@ export function MobileMenu({
         onClick={() => {
           setisMobileMenuOpened(false)
           setisSearchDivDisplayed(false)
+          setIsSearchIconClicked(false)
           hideSearchMenu()
         }}
       >
@@ -47,6 +43,7 @@ export function MobileMenu({
         onClick={() => {
           setisMobileMenuOpened(false)
           setisSearchDivDisplayed(false)
+          setIsSearchIconClicked(false)
           hideSearchMenu()
         }}
       >
@@ -58,6 +55,7 @@ export function MobileMenu({
         onClick={() => {
           setisMobileMenuOpened(false)
           setisSearchDivDisplayed(false)
+          setIsSearchIconClicked(false)
           hideSearchMenu()
         }}
       >
@@ -68,6 +66,7 @@ export function MobileMenu({
         onClick={() => {
           setisMobileMenuOpened(false)
           setisSearchDivDisplayed(false)
+          setIsSearchIconClicked(false)
           hideSearchMenu()
         }}
       >
@@ -85,10 +84,11 @@ export function MobileMenu({
             onClick={() => {
               dispatch(actions.convertToRon('ron'))
               setisMobileMenuOpened(false)
+              setIsSearchIconClicked(false)
               hideSearchMenu()
             }}
           />
-          ron
+          RON
           <input
             type="radio"
             name="currency"
@@ -96,10 +96,11 @@ export function MobileMenu({
             onClick={() => {
               dispatch(actions.convertToEur('euro'))
               setisMobileMenuOpened(false)
+              setIsSearchIconClicked(false)
               hideSearchMenu()
             }}
           />
-          eur
+          EUR
           <input
             type="radio"
             name="currency"
@@ -107,10 +108,11 @@ export function MobileMenu({
             onClick={() => {
               dispatch(actions.convertToUsd('dollar'))
               setisMobileMenuOpened(false)
+              setIsSearchIconClicked(false)
               hideSearchMenu()
             }}
           />
-          usd
+          USD
         </div>
       </div>
     </div>

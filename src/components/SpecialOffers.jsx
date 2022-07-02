@@ -10,13 +10,7 @@ function SpecialOffers(props) {
 
   // Function that checks the currency variable and assign the currencySign variable
   function checkForCurrency() {
-    return currency === 'dollar'
-      ? (currencySign = '$')
-      : currency === 'euro'
-      ? (currencySign = '€')
-      : currency === 'ron'
-      ? (currencySign = 'RON')
-      : ''
+    return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'RON') : ''
   }
 
   checkForCurrency()

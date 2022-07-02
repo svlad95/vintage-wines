@@ -7,12 +7,14 @@ import data from './data'
 
 function Header(props) {
   const [isMobileMenuOpened, setisMobileMenuOpened] = useState()
+  const [isSearchIconClicked, setIsSearchIconClicked] = useState(false)
   const [isSearchDivDisplayed, setisSearchDivDisplayed] = useState(false)
   let searchInput = document.getElementById('search-input')
 
   const { products } = data
 
   const [searchTerm, setSearchTerm] = useState('')
+
   const currency = useSelector((state) => state.currency)
   let currencySign = ''
 
@@ -100,11 +102,9 @@ function Header(props) {
                     } else {
                       //if the cartQty of the item is equal to the product overall quantity, display an alert (error)
                       alert(
-                        `There are only ${product.quantity} ${
-                          product.volume !== 10 ? 'bottles' : 'boxes'
-                        } of ${product.name} ${product.color} ${product.type} (${
-                          product.volume
-                        }L) available right now.`,
+                        `There are only ${product.quantity} ${product.volume !== 10 ? 'bottles' : 'boxes'} of ${product.name} ${product.color} ${
+                          product.type
+                        } (${product.volume}L) available right now.`,
                       )
                     }
                   }
@@ -124,30 +124,20 @@ function Header(props) {
       )
     })
 
-   
-
   function checkForCurrency() {
-    return currency === 'dollar'
-      ? (currencySign = '$')
-      : currency === 'euro'
-      ? (currencySign = '€')
-      : currency === 'ron'
-      ? (currencySign = 'ron')
-      : ''
+    return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'ron') : ''
   }
 
   function showSearchMenu() {
     let searchInputField = document.getElementById('search-input')
-    let closeSearchInputIcon = document.getElementById('close-search-input')
-    closeSearchInputIcon.style.transform = 'scale(1)'
-    searchInputField.style.width = '100%'
+
+    searchInputField.style.width = '90%'
     searchInputField.style.opacity = 1
     searchInputField.focus()
   }
   function hideSearchMenu() {
     let searchInputField = document.getElementById('search-input')
-    let closeSearchInputIcon = document.getElementById('close-search-input')
-    closeSearchInputIcon.style.transform = 'scale(0)'
+
     searchInputField.style.width = '0px'
     searchInputField.style.opacity = 0
     setisSearchDivDisplayed(false)
@@ -204,6 +194,7 @@ function Header(props) {
               onClick={() => {
                 setisMobileMenuOpened(!isMobileMenuOpened)
                 setisSearchDivDisplayed(false)
+                setIsSearchIconClicked(false)
                 hideSearchMenu()
               }}
             ></i>
@@ -215,6 +206,7 @@ function Header(props) {
               onClick={() => {
                 setisMobileMenuOpened(false)
                 setisSearchDivDisplayed(false)
+                setIsSearchIconClicked(false)
                 hideSearchMenu()
               }}
             >
@@ -229,6 +221,7 @@ function Header(props) {
               onClick={() => {
                 setisMobileMenuOpened(false)
                 setisSearchDivDisplayed(false)
+                setIsSearchIconClicked(false)
                 hideSearchMenu()
               }}
             >
@@ -241,9 +234,15 @@ function Header(props) {
         </header>
         <div className="search-bar">
           <i
-            className="fa-solid fa-magnifying-glass"
+            className={isSearchIconClicked ? 'fa-solid fa-xmark' : 'fa-solid fa-magnifying-glass'}
             onClick={() => {
-              showSearchMenu()
+              if (isSearchIconClicked) {
+                hideSearchMenu()
+                setIsSearchIconClicked(!isSearchIconClicked)
+              } else {
+                showSearchMenu()
+                setIsSearchIconClicked(!isSearchIconClicked)
+              }
             }}
           ></i>
           <input
@@ -260,13 +259,6 @@ function Header(props) {
             }}
             id="search-input"
           />
-          <i
-            className="fa-solid fa-xmark"
-            id="close-search-input"
-            onClick={() => {
-              hideSearchMenu()
-            }}
-          ></i>
         </div>
       </div>
       {/* Search Results Div*/}
@@ -280,6 +272,7 @@ function Header(props) {
         isMobileMenuOpened={isMobileMenuOpened}
         setisMobileMenuOpened={setisMobileMenuOpened}
         setisSearchDivDisplayed={setisSearchDivDisplayed}
+        setIsSearchIconClicked={setIsSearchIconClicked}
         dispatch={dispatch}
         hideSearchMenu={hideSearchMenu}
       />

@@ -25,15 +25,10 @@ function TohaniWines(props) {
       activeFilters.unshift('Red')
     }
   }, [activeFilters])
+
   // Function that checks the currency variable and assign the currencySign variable
   function checkForCurrency() {
-    return currency === 'dollar'
-      ? (currencySign = '$')
-      : currency === 'euro'
-      ? (currencySign = '€')
-      : currency === 'ron'
-      ? (currencySign = 'RON')
-      : ''
+    return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'RON') : ''
   }
   checkForCurrency()
 
@@ -77,12 +72,7 @@ function TohaniWines(props) {
       products.forEach((product) => {
         if (redColorCheckbox.checked || whiteColorCheckbox.checked || roseColorCheckbox.checked) {
           //
-          if (
-            !sweetTypeCheckbox.checked &&
-            !semiSweetTypeCheckbox.checked &&
-            !dryTypeCheckbox.checked &&
-            !semiDryTypeCheckbox.checked
-          ) {
+          if (!sweetTypeCheckbox.checked && !semiSweetTypeCheckbox.checked && !dryTypeCheckbox.checked && !semiDryTypeCheckbox.checked) {
             if (product.color.includes(filter)) {
               resultArray.push(product)
             }
@@ -104,9 +94,7 @@ function TohaniWines(props) {
       })
     })
 
-    setCopyOfProducts(
-      activeFilters.length === 0 ? products.map((product) => product) : [...new Set(resultArray)],
-    )
+    setCopyOfProducts(activeFilters.length === 0 ? products.map((product) => product) : [...new Set(resultArray)])
   }
 
   return (
