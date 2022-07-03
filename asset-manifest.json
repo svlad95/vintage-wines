@@ -1,8 +1,11 @@
 {
   "files": {
-    "main.css": "/vintage-wines/static/css/main.cd1f0c97.css",
-    "main.js": "/vintage-wines/static/js/main.2183c143.js",
+    "main.css": "/vintage-wines/static/css/main.d5f3de80.css",
+    "main.js": "/vintage-wines/static/js/main.e7981098.js",
     "static/js/787.6ebc50fc.chunk.js": "/vintage-wines/static/js/787.6ebc50fc.chunk.js",
+    "static/media/RoseWine.png": "/vintage-wines/static/media/RoseWine.87f690c8764f0d94b43f.png",
+    "static/media/WhiteWine.png": "/vintage-wines/static/media/WhiteWine.98ba961974429f60f500.png",
+    "static/media/RedWine.png": "/vintage-wines/static/media/RedWine.f9eb46d8be8ab8c9a02a.png",
     "static/media/AbsoluteVodka.png": "/vintage-wines/static/media/AbsoluteVodka.a7c4c9847b403fdc808a.png",
     "static/media/Jaggermeister.png": "/vintage-wines/static/media/Jaggermeister.ab5bca01b7de7ca9202e.png",
     "static/media/TequillaOlmeca.png": "/vintage-wines/static/media/TequillaOlmeca.79e0a414fe1fb341be99.png",
@@ -15,16 +18,13 @@
     "static/media/StrongbowApple.png": "/vintage-wines/static/media/StrongbowApple.bd920770c14121041c4f.png",
     "static/media/Stalinskaya.png": "/vintage-wines/static/media/Stalinskaya.1747b07a5b19cc1f08a8.png",
     "static/media/JimBeam.png": "/vintage-wines/static/media/JimBeam.d26723df0b406cf82038.png",
-    "static/media/WhiteWine.png": "/vintage-wines/static/media/WhiteWine.aaf4e30f99d125adaf13.png",
-    "static/media/RedWine.png": "/vintage-wines/static/media/RedWine.149f349e82d15c9494c4.png",
-    "static/media/RoseWine.png": "/vintage-wines/static/media/RoseWine.3e588777c65690024677.png",
     "index.html": "/vintage-wines/index.html",
-    "main.cd1f0c97.css.map": "/vintage-wines/static/css/main.cd1f0c97.css.map",
-    "main.2183c143.js.map": "/vintage-wines/static/js/main.2183c143.js.map",
+    "main.d5f3de80.css.map": "/vintage-wines/static/css/main.d5f3de80.css.map",
+    "main.e7981098.js.map": "/vintage-wines/static/js/main.e7981098.js.map",
     "787.6ebc50fc.chunk.js.map": "/vintage-wines/static/js/787.6ebc50fc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cd1f0c97.css",
-    "static/js/main.2183c143.js"
+    "static/css/main.d5f3de80.css",
+    "static/js/main.e7981098.js"
   ]
 }
