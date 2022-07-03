@@ -21,13 +21,8 @@
     font-size: 16px;
     letter-spacing: 1px;
   }
-
-  .available-quantity {
-    font-size: 13px;
-    strong {
-      font-size: 14px;
-      font-family: serif;
-    }
+  img {
+    width: 120px;
   }
   .add-to-cart {
     display: flex;
@@ -48,6 +43,28 @@
       &:hover {
         background: $greenColor;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 1240px) {
+  .special-offer-card {
+    width: 260px;
+
+    h6 {
+      font-size: 19px;
+    }
+    small {
+      font-size: 19px;
+    }
+    img {
+      width: 150px;
+    }
+
+    .add-to-cart {
+      a {
+        font-size: 20px;
       }
     }
   }

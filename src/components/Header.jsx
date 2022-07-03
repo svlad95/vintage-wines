@@ -14,7 +14,15 @@ function Header(props) {
   const { products } = data
 
   const [searchTerm, setSearchTerm] = useState('')
+  window.addEventListener('resize', () => {
+    let searchInputField = document.getElementById('search-input')
 
+    if (isSearchIconClicked && window.innerWidth < 700) {
+      searchInputField.classList.add('expanded')
+    } else {
+      searchInputField.classList.remove('expanded')
+    }
+  })
   const currency = useSelector((state) => state.currency)
   let currencySign = ''
 
@@ -130,14 +138,13 @@ function Header(props) {
 
   function showSearchMenu() {
     let searchInputField = document.getElementById('search-input')
+    searchInputField.style.width = '60%'
 
-    searchInputField.style.width = '90%'
     searchInputField.style.opacity = 1
     searchInputField.focus()
   }
   function hideSearchMenu() {
     let searchInputField = document.getElementById('search-input')
-
     searchInputField.style.width = '0px'
     searchInputField.style.opacity = 0
     setisSearchDivDisplayed(false)

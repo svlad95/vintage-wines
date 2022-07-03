@@ -2,23 +2,15 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import CartProduct from './CartProduct'
 
-
-
 function Checkout(props) {
   const { cartItems, onAdd, onRemove, removeFromCart } = props
-  const currency = useSelector(state => state.currency)
+  const currency = useSelector((state) => state.currency)
   let currencySign = ''
   const [selected, setSelected] = useState(null)
-  const displayedCartItems = useSelector(state => state.displayedCartItems)
+  const displayedCartItems = useSelector((state) => state.displayedCartItems)
 
   function checkForCurrency() {
-    return currency === 'dollar'
-      ? (currencySign = '$')
-      : currency === 'euro'
-      ? (currencySign = '€')
-      : currency === 'ron'
-      ? (currencySign = 'RON')
-      : ''
+    return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'RON') : ''
   }
   checkForCurrency()
   let shipmentCostInRon = 30
@@ -51,7 +43,7 @@ function Checkout(props) {
         ) : (
           <div className="checkout-container">
             <div className="checkout-products">
-              {cartItems.map(product => {
+              {cartItems.map((product) => {
                 return (
                   <div className="cart-product" key={product.id}>
                     <CartProduct
@@ -88,12 +80,7 @@ function Checkout(props) {
             </div>
             <div className="delivery-options">
               <p>Delivery:</p>
-              <select
-                name="delivery"
-                id=""
-                onChange={e => setSelected(e.target.value || null)}
-                value={selected || ''}
-              >
+              <select name="delivery" id="" onChange={(e) => setSelected(e.target.value || null)} value={selected || ''}>
                 <option value="pickupFromLocation" id="pickupFromLocation">
                   Pickup from location - Free
                 </option>

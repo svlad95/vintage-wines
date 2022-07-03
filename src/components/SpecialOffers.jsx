@@ -17,37 +17,38 @@ function SpecialOffers(props) {
 
   return (
     <>
-      <div className="special-offers-div">
+      <div className="special-offers-wrapper">
         <h5>Special Offers</h5>
-
-        {products.map((product) => {
-          if (product.color === '')
-            return (
-              <Product
-                onAdd={onAdd}
-                cartItems={cartItems}
-                product={product}
-                id={product.id}
-                key={product.id}
-                name={product.name}
-                price={
-                  currency === 'ron'
-                    ? product.price
-                    : currency === 'euro'
-                    ? (product.price * 100) / 4.95 / 100
-                    : currency === 'dollar'
-                    ? (product.price * 100) / 4.69 / 100
-                    : ''
-                }
-                type={product.type}
-                volume={product.volume}
-                currencySign={currencySign}
-                quantity={product.quantity}
-                img={product.img}
-                imgWidth={product.imgWidth}
-              />
-            )
-        })}
+        <div className="special-offers-div">
+          {products.map((product) => {
+            if (product.color === '')
+              return (
+                <Product
+                  onAdd={onAdd}
+                  cartItems={cartItems}
+                  product={product}
+                  id={product.id}
+                  key={product.id}
+                  name={product.name}
+                  price={
+                    currency === 'ron'
+                      ? product.price
+                      : currency === 'euro'
+                      ? (product.price * 100) / 4.95 / 100
+                      : currency === 'dollar'
+                      ? (product.price * 100) / 4.69 / 100
+                      : ''
+                  }
+                  type={product.type}
+                  volume={product.volume}
+                  currencySign={currencySign}
+                  quantity={product.quantity}
+                  img={product.img}
+                  imgWidth={product.imgWidth}
+                />
+              )
+          })}
+        </div>
       </div>
     </>
   )
