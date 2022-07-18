@@ -1,9 +1,9 @@
 .mobile-menu {
-  background: rgba(249, 242, 229, 1);
+  background: linear-gradient($backgroundColor 0%, rgba($yellowColor, 1) 15%, rgba($yellowColor, 1) 60%, $backgroundColor 85%);
   opacity: 1;
   position: fixed;
   width: 100%;
-  height: 110vh;
+  height: 100vh;
   z-index: 1135;
   top: 5.4em;
   transform-origin: left;

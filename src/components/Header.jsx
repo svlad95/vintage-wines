@@ -25,7 +25,10 @@ function Header(props) {
   })
   const currency = useSelector((state) => state.currency)
   let currencySign = ''
-
+  function checkForCurrency() {
+    return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'ron') : ''
+  }
+  checkForCurrency()
   const dispatch = useDispatch()
   const displayedCartItems = useSelector((state) => state.displayedCartItems)
   const { cartItems, onAdd } = props
@@ -132,10 +135,6 @@ function Header(props) {
       )
     })
 
-  function checkForCurrency() {
-    return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'ron') : ''
-  }
-
   function showSearchMenu() {
     let searchInputField = document.getElementById('search-input')
     searchInputField.style.width = '60%'
@@ -150,7 +149,6 @@ function Header(props) {
     setisSearchDivDisplayed(false)
     searchInput.value = ''
   }
-  checkForCurrency()
 
   // UsEffect hook to show/hide the search div
   useEffect(() => {
@@ -182,13 +180,11 @@ function Header(props) {
 
   //UseEffect hook to disable the scroll while mobile menu is opened
   useEffect(() => {
-    if (isMobileMenuOpened) {
-      window.onscroll = function () {
-        window.scrollTo(0, 0)
-      }
-    } else {
-      window.onscroll = function () {}
-    }
+    isMobileMenuOpened
+      ? (window.onscroll = function () {
+          window.scrollTo(0, 0)
+        })
+      : (window.onscroll = function () {})
   }, [isMobileMenuOpened])
 
   return (

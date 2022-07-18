@@ -1,8 +1,8 @@
 @import './variables';
 
 .wine-offers-div {
-  background: $yellowColor;
-  width: 95%;
+  background: $backgroundColor;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   position: relative;
@@ -15,44 +15,63 @@
   animation: fade 1s;
   animation-fill-mode: forwards;
   // overflow: hidden !important;
-  margin-top: 10em;
+  margin-top: 9em;
   padding: 1.5em;
 
-  h5 {
-    margin-top: -0.5em;
-    margin-bottom: -3em;
-    font-size: 18px;
-    letter-spacing: 2px;
-  }
-  .filters-container {
+  .filters-wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1em;
-    margin-bottom: -3em;
-    position: relative;
-    width: 80px;
-    border-radius: 2px;
-    border: 1px solid $greenColor;
-    .filters-icon {
+    justify-content: center;
+    position: sticky;
+    width: 100%;
+    margin-bottom: -2.5em;
+    min-height: 5em;
+    top: 9em;
+    background-color: $backgroundColor;
+    color: rgba($brownColor, 1);
+    padding-bottom: 5px;
+    border-bottom: 1px dotted black;
+
+    h5 {
+      margin-bottom: 0.5em;
+      font-size: 18px;
+      letter-spacing: 2px;
+      color: $brownColor;
+    }
+    .filters-container {
       display: flex;
       align-items: center;
-      gap: 0.5em;
-      transition: color 0.1s;
-      cursor: pointer;
-      padding: 5px;
-    }
-    .close-filter-menu {
-      display: none;
-    }
-    .filter-options {
-      position: absolute;
-      transform: scale(0);
-      opacity: 0;
-      transition: 0s all;
-    }
+      justify-content: center;
+      gap: 1em;
+      position: relative;
+      width: 80px;
+      border-radius: 2px;
+      border: 1px solid $greenColor;
+      small {
+        font-size: 15px;
+      }
+      .filters-icon {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        transition: color 0.1s;
+        cursor: pointer;
+        padding: 5px;
+      }
+      .close-filter-menu {
+        display: none;
+      }
+      .filter-options {
+        position: absolute;
+        transform: scale(0);
+        opacity: 0;
+        transition: 0s all;
+      }
 
-    i {
-      font-size: 15px;
+      i {
+        font-size: 15px;
+      }
     }
   }
 }

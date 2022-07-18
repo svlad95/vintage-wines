@@ -7,7 +7,7 @@ function Product(props) {
   const { product, onAdd, cartItems } = props
 
   return (
-    <div className="special-offer-card">
+    <div className="product-card">
       <h6 className="product-name">{product.name}</h6>
       <small>
         {`${product.color} `}

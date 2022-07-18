@@ -27,6 +27,7 @@ function RecasWines(props) {
       console.log(activeFilters)
     }
   }, [activeFilters])
+
   // Function that checks the currency variable and assign the currencySign variable
   function checkForCurrency() {
     return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'RON') : ''
@@ -98,10 +99,10 @@ function RecasWines(props) {
   return (
     <>
       <div className="wine-offers-div">
-        <h5>Recas Wines</h5>
+        <div className="filters-wrapper">
+          <h5>Recas Wines</h5>
 
-        <div className={displayFilters ? 'filters-container active' : 'filters-container'}>
-          <div>
+          <div className={displayFilters ? 'filters-container active' : 'filters-container'}>
             <div
               className="filters-icon"
               onClick={() => {
@@ -119,167 +120,166 @@ function RecasWines(props) {
             >
               x
             </a>
-          </div>
 
-          <div className="filter-options">
-            <div className="filter-color">
-              <span>By Color</span>
-              <div className="inputs">
-                <input
-                  type="checkbox"
-                  id="redColorCheckbox"
-                  onChange={() => {
-                    if (document.getElementById('redColorCheckbox').checked) {
-                      if (!activeFilters.includes('Red')) {
-                        setActiveFilters([...activeFilters, 'Red'])
-                      }
-                    } else {
-                      setActiveFilters(removeFilter(activeFilters, 'Red'))
-                    }
-                  }}
-                />
-                Red
-                <input
-                  type="checkbox"
-                  id="whiteColorCheckbox"
-                  onChange={() => {
-                    if (document.getElementById('whiteColorCheckbox').checked) {
-                      if (!activeFilters.includes('White')) {
-                        setActiveFilters([...activeFilters, 'White'])
-                      }
-                    } else {
-                      setActiveFilters(removeFilter(activeFilters, 'White'))
-                    }
-                  }}
-                />
-                White
-                <input
-                  type="checkbox"
-                  id="roseColorCheckbox"
-                  onChange={() => {
-                    if (document.getElementById('roseColorCheckbox').checked) {
-                      if (!activeFilters.includes('Rosé')) {
-                        setActiveFilters([...activeFilters, 'Rosé'])
-                      }
-                    } else {
-                      setActiveFilters(removeFilter(activeFilters, 'Rosé'))
-                    }
-                  }}
-                />
-                Rosé
-              </div>
-            </div>
-            <div className="filter-type">
-              <span>By Type</span>
-              <div className="inputs">
-                <div className="sweet-type">
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="sweetTypeCheckbox"
-                      name="Sweet"
-                      disabled={true}
-                      onClick={() => {
-                        return false
-                      }}
-                      // onChange={() => {
-                      //   if (document.getElementById('sweetTypeCheckbox').checked) {
-                      //     if (!activeFilters.includes('Sweet')) {
-                      //       setActiveFilters([...activeFilters, 'Sweet'])
-                      //     }
-                      //   } else {
-                      //     setActiveFilters(removeFilter(activeFilters, 'Sweet'))
-                      //   }
-                      // }}
-                    />
-                    <label htmlFor="Sweet">Sweet</label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="semiSweetTypeCheckbox"
-                      name="Sweet"
-                      onChange={() => {
-                        if (document.getElementById('semiSweetTypeCheckbox').checked) {
-                          if (!activeFilters.includes('Semi-Sweet')) {
-                            setActiveFilters([...activeFilters, 'Semi-Sweet'])
-                          }
-                        } else {
-                          setActiveFilters(removeFilter(activeFilters, 'Semi-Sweet'))
+            <div className="filter-options">
+              <div className="filter-color">
+                <span>By Color</span>
+                <div className="inputs">
+                  <input
+                    type="checkbox"
+                    id="redColorCheckbox"
+                    onChange={() => {
+                      if (document.getElementById('redColorCheckbox').checked) {
+                        if (!activeFilters.includes('Red')) {
+                          setActiveFilters([...activeFilters, 'Red'])
                         }
-                      }}
-                    />
-
-                    <label htmlFor="Semi-Sweet">Semi-Sweet</label>
-                  </div>
-                </div>
-                <div className="dry-type">
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="dryTypeCheckbox"
-                      name="Dry"
-                      disabled={true}
-                      onClick={() => {
-                        return false
-                      }}
-                      // onChange={() => {
-                      //   if (document.getElementById('dryTypeCheckbox').checked) {
-                      //     if (!activeFilters.includes('Dry')) {
-                      //       setActiveFilters([...activeFilters, 'Dry'])
-                      //     }
-                      //   } else {
-                      //     setActiveFilters(removeFilter(activeFilters, 'Dry'))
-                      //   }
-                      // }}
-                    />
-
-                    <label htmlFor="Dry">Dry</label>
-                  </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id="semiDryTypeCheckbox"
-                      name="Semi-Dry"
-                      onChange={() => {
-                        if (document.getElementById('semiDryTypeCheckbox').checked) {
-                          if (!activeFilters.includes('Semi-Dry')) {
-                            setActiveFilters([...activeFilters, 'Semi-Dry'])
-                          }
-                        } else {
-                          setActiveFilters(removeFilter(activeFilters, 'Semi-Dry'))
+                      } else {
+                        setActiveFilters(removeFilter(activeFilters, 'Red'))
+                      }
+                    }}
+                  />
+                  Red
+                  <input
+                    type="checkbox"
+                    id="whiteColorCheckbox"
+                    onChange={() => {
+                      if (document.getElementById('whiteColorCheckbox').checked) {
+                        if (!activeFilters.includes('White')) {
+                          setActiveFilters([...activeFilters, 'White'])
                         }
-                      }}
-                    />
-
-                    <label htmlFor="Semi-Dry">Semi-Dry</label>
-                  </div>
+                      } else {
+                        setActiveFilters(removeFilter(activeFilters, 'White'))
+                      }
+                    }}
+                  />
+                  White
+                  <input
+                    type="checkbox"
+                    id="roseColorCheckbox"
+                    onChange={() => {
+                      if (document.getElementById('roseColorCheckbox').checked) {
+                        if (!activeFilters.includes('Rosé')) {
+                          setActiveFilters([...activeFilters, 'Rosé'])
+                        }
+                      } else {
+                        setActiveFilters(removeFilter(activeFilters, 'Rosé'))
+                      }
+                    }}
+                  />
+                  Rosé
                 </div>
               </div>
-            </div>
-            <div className="buttons">
-              <button
-                onClick={() => {
-                  setDisplayFilters(false)
-                  filterProducts()
-                  resetCheckboxes()
-                }}
-              >
-                Apply Filters
-              </button>
-              <button
-                onClick={() => {
-                  resetCheckboxes()
-                  setCopyOfProducts(products.map((product) => product))
-                  setDisplayFilters(false)
-                }}
-              >
-                Clear Filters
-              </button>
+              <div className="filter-type">
+                <span>By Type</span>
+                <div className="inputs">
+                  <div className="sweet-type">
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="sweetTypeCheckbox"
+                        name="Sweet"
+                        disabled={true}
+                        onClick={() => {
+                          return false
+                        }}
+                        // onChange={() => {
+                        //   if (document.getElementById('sweetTypeCheckbox').checked) {
+                        //     if (!activeFilters.includes('Sweet')) {
+                        //       setActiveFilters([...activeFilters, 'Sweet'])
+                        //     }
+                        //   } else {
+                        //     setActiveFilters(removeFilter(activeFilters, 'Sweet'))
+                        //   }
+                        // }}
+                      />
+                      <label htmlFor="Sweet">Sweet</label>
+                    </div>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="semiSweetTypeCheckbox"
+                        name="Sweet"
+                        onChange={() => {
+                          if (document.getElementById('semiSweetTypeCheckbox').checked) {
+                            if (!activeFilters.includes('Semi-Sweet')) {
+                              setActiveFilters([...activeFilters, 'Semi-Sweet'])
+                            }
+                          } else {
+                            setActiveFilters(removeFilter(activeFilters, 'Semi-Sweet'))
+                          }
+                        }}
+                      />
+
+                      <label htmlFor="Semi-Sweet">Semi-Sweet</label>
+                    </div>
+                  </div>
+                  <div className="dry-type">
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="dryTypeCheckbox"
+                        name="Dry"
+                        disabled={true}
+                        onClick={() => {
+                          return false
+                        }}
+                        // onChange={() => {
+                        //   if (document.getElementById('dryTypeCheckbox').checked) {
+                        //     if (!activeFilters.includes('Dry')) {
+                        //       setActiveFilters([...activeFilters, 'Dry'])
+                        //     }
+                        //   } else {
+                        //     setActiveFilters(removeFilter(activeFilters, 'Dry'))
+                        //   }
+                        // }}
+                      />
+
+                      <label htmlFor="Dry">Dry</label>
+                    </div>
+                    <div>
+                      <input
+                        type="checkbox"
+                        id="semiDryTypeCheckbox"
+                        name="Semi-Dry"
+                        onChange={() => {
+                          if (document.getElementById('semiDryTypeCheckbox').checked) {
+                            if (!activeFilters.includes('Semi-Dry')) {
+                              setActiveFilters([...activeFilters, 'Semi-Dry'])
+                            }
+                          } else {
+                            setActiveFilters(removeFilter(activeFilters, 'Semi-Dry'))
+                          }
+                        }}
+                      />
+
+                      <label htmlFor="Semi-Dry">Semi-Dry</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="buttons">
+                <button
+                  onClick={() => {
+                    setDisplayFilters(false)
+                    filterProducts()
+                    resetCheckboxes()
+                  }}
+                >
+                  Apply Filters
+                </button>
+                <button
+                  onClick={() => {
+                    resetCheckboxes()
+                    setCopyOfProducts(products.map((product) => product))
+                    setDisplayFilters(false)
+                  }}
+                >
+                  Clear Filters
+                </button>
+              </div>
             </div>
           </div>
         </div>
-
         {copyOfProducts.length === 0 ? (
           <div>No results found</div>
         ) : (
