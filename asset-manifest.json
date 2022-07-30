@@ -1,8 +1,12 @@
 {
   "files": {
-    "main.css": "/vintage-wines/static/css/main.fb9e6772.css",
-    "main.js": "/vintage-wines/static/js/main.9d53f021.js",
+    "main.css": "/vintage-wines/static/css/main.51a87689.css",
+    "main.js": "/vintage-wines/static/js/main.ea0b0f05.js",
     "static/js/787.6ebc50fc.chunk.js": "/vintage-wines/static/js/787.6ebc50fc.chunk.js",
+    "static/media/Sheridan.png": "/vintage-wines/static/media/Sheridan.e3ee3790237e3cc2b945.png",
+    "static/media/CedarRidge.png": "/vintage-wines/static/media/CedarRidge.cb876ea4fc7d8cc288c0.png",
+    "static/media/Akashi.png": "/vintage-wines/static/media/Akashi.c060c6038015df20b8dd.png",
+    "static/media/ChateauGloria.png": "/vintage-wines/static/media/ChateauGloria.687fbcdc28b6037befba.png",
     "static/media/RoseWine.png": "/vintage-wines/static/media/RoseWine.87f690c8764f0d94b43f.png",
     "static/media/WhiteWine.png": "/vintage-wines/static/media/WhiteWine.98ba961974429f60f500.png",
     "static/media/RedWine.png": "/vintage-wines/static/media/RedWine.f9eb46d8be8ab8c9a02a.png",
@@ -19,12 +23,12 @@
     "static/media/Stalinskaya.png": "/vintage-wines/static/media/Stalinskaya.1747b07a5b19cc1f08a8.png",
     "static/media/JimBeam.png": "/vintage-wines/static/media/JimBeam.d26723df0b406cf82038.png",
     "index.html": "/vintage-wines/index.html",
-    "main.fb9e6772.css.map": "/vintage-wines/static/css/main.fb9e6772.css.map",
-    "main.9d53f021.js.map": "/vintage-wines/static/js/main.9d53f021.js.map",
+    "main.51a87689.css.map": "/vintage-wines/static/css/main.51a87689.css.map",
+    "main.ea0b0f05.js.map": "/vintage-wines/static/js/main.ea0b0f05.js.map",
     "787.6ebc50fc.chunk.js.map": "/vintage-wines/static/js/787.6ebc50fc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fb9e6772.css",
-    "static/js/main.9d53f021.js"
+    "static/css/main.51a87689.css",
+    "static/js/main.ea0b0f05.js"
   ]
 }
