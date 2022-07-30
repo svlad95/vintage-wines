@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Product from './Product'
+import SortComponent from './Filter&Sort_Components/SortComponent'
 
 function SpecialOffers(props) {
   const currency = useSelector((state) => state.currency) // Global currency variable
@@ -8,175 +9,186 @@ function SpecialOffers(props) {
 
   const { products, onAdd, cartItems } = props
   const [displayFilters, setDisplayFilters] = useState(false)
-  const [activeFilters, setActiveFilters] = useState([])
+  const [sortFilter, setSortFilter] = useState('NoFilterApplied')
+  const [rerender, setRerender] = useState(false)
+  const [isSortIconClicked, setSortIconClicked] = useState(false)
 
+  //Rerender useEffect
+  useEffect(() => {
+    setRerender(!rerender)
+  }, [])
+
+  const [specialProducts, setSpecialProducts] = useState(
+    products
+      .map((product) => {
+        //Target only the special products, which have no color property set
+        if (product.color === '') {
+          return product
+        }
+      })
+      .filter(Boolean),
+  )
+  // Use Effect hook to update the sortFilter and set the rendered products according to the Sort Options
+  useEffect(() => {
+    if (sortFilter === 'priceLowToHigh') {
+      setSpecialProducts(specialProducts.sort((a, b) => a.price - b.price))
+      setRerender(!rerender)
+    } else if (sortFilter === 'priceHighToLow') {
+      setSpecialProducts(specialProducts.sort((a, b) => b.price - a.price))
+      setRerender(!rerender)
+    } else if (sortFilter === 'volumeLowToHigh') {
+      setSpecialProducts(specialProducts.sort((a, b) => a.volume - b.volume))
+      setRerender(!rerender)
+    } else if (sortFilter === 'volumeHighToLow') {
+      setSpecialProducts(specialProducts.sort((a, b) => b.volume - a.volume))
+      setRerender(!rerender)
+    } else {
+      setSortFilter('NoFilterApplied')
+      setSpecialProducts(
+        products
+          .map((product) => {
+            //Target only the special products, which have no color property set
+            if (product.color === '') {
+              return product
+            }
+          })
+          .filter(Boolean),
+      )
+    }
+  }, [sortFilter])
   // Function that checks the currency variable and assign the currencySign variable
   function checkForCurrency() {
-    return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'RON') : ''
+    return currency === 'dollar'
+      ? (currencySign = '$')
+      : currency === 'euro'
+      ? (currencySign = '€')
+      : currency === 'ron'
+      ? (currencySign = 'RON')
+      : ''
   }
 
   // Function to uncheck all the checked checkboxes
   function resetCheckboxes() {
-    let checkboxes = Array.from(document.querySelectorAll('input[type=checkbox]'))
+    let checkboxes = Array.from(document.querySelectorAll('input[type=radio]'))
 
     checkboxes.forEach((checkbox) => {
-      if (checkbox.checked) {
-        checkbox.click()
-      }
+      checkbox.checked = false
     })
-    setActiveFilters([])
   }
 
-  // Function to remove the element from the filters array
-  function removeFilter(array, item) {
-    let newArray = [...array]
-    const index = newArray.findIndex((element) => element === item)
+  function sortCards(sortFilter) {
+    let productCards = document.querySelectorAll('.product-card')
+    productCards.forEach((product) => {
+      product.style.transform = 'scale(0)'
+    })
+    setTimeout(() => {
+      setSortFilter(`${sortFilter}`)
+    }, 380)
 
-    if (index !== -1) {
-      newArray.splice(index, 1)
-      return newArray
-    }
-  }
-
-  const [copyOfProducts, setCopyOfProducts] = useState(products.map((product) => product))
-
-  function filterProducts() {
-    let resultArray = []
-    let colors = []
-    let redColorCheckbox = document.getElementById('redColorCheckbox')
-    let whiteColorCheckbox = document.getElementById('whiteColorCheckbox')
-    let roseColorCheckbox = document.getElementById('roseColorCheckbox')
-    let sweetTypeCheckbox = document.getElementById('sweetTypeCheckbox')
-    let semiSweetTypeCheckbox = document.getElementById('semiSweetTypeCheckbox')
-    let dryTypeCheckbox = document.getElementById('dryTypeCheckbox')
-    let semiDryTypeCheckbox = document.getElementById('semiDryTypeCheckbox')
-
-    activeFilters.filter((filter) => {
-      products.forEach((product) => {
-        if (redColorCheckbox.checked || whiteColorCheckbox.checked || roseColorCheckbox.checked) {
-          if (!sweetTypeCheckbox.checked && !semiSweetTypeCheckbox.checked && !dryTypeCheckbox.checked && !semiDryTypeCheckbox.checked) {
-            if (product.color.includes(filter)) {
-              resultArray.push(product)
-            }
-          } else {
-            if (product.color.includes(filter)) {
-              colors.push(product)
-            }
-            colors.forEach((item) => {
-              if (item.type.split(' ').indexOf(filter) > -1) {
-                resultArray.push(item)
-              }
-            })
-          }
-        } else if (product.type.split(' ').indexOf(filter) > -1) {
-          resultArray.push(product)
-        }
+    setTimeout(() => {
+      productCards.forEach((product) => {
+        product.style.transform = 'scale(1)'
       })
-    })
-
-    setCopyOfProducts(activeFilters.length === 0 ? products.map((product) => product) : [...new Set(resultArray)])
+    }, 420)
   }
+
+  window.addEventListener('scroll', function (e) {
+    let filterWrapper = document.getElementById('filtersWrapper')
+
+    // Need to add a question mark after filterWrapper in order to aviod console error stating that "Cannot read properties of null (reading 'classList')"
+    try {
+      filterWrapper.classList.toggle('sticky', window.scrollY > 10)
+    } catch (err) {
+      console.log('Bravo! Nice Find! This was a hard one')
+      console.log(err)
+    }
+  })
 
   checkForCurrency()
 
   return (
     <>
-      <div className="special-offers-wrapper">
-        <div className="filters-wrapper">
+      <div className="special-offers-wrapper" id="specialOffersWrapper">
+        <div className="filters-wrapper" id="filtersWrapper">
           <h5>Special Offers</h5>
+          <div id="filtersContainer" className="filters-container">
+            <SortComponent
+              sortCards={sortCards}
+              resetCheckboxes={resetCheckboxes}
+              setDisplayFilters={setDisplayFilters}
+            />
+          </div>
 
-          <div className={displayFilters ? 'filters-container active' : 'filters-container'}>
-            <div
-              className="filters-icon"
+          <div
+            id="filtersContainerMobile"
+            className={displayFilters ? 'filters-container-mobile active' : 'filters-container-mobile'}
+          >
+            <SortComponent
+              sortCards={sortCards}
+              resetCheckboxes={resetCheckboxes}
+              setDisplayFilters={setDisplayFilters}
+            />
+            <i
+              className="fa-solid fa-rectangle-xmark"
               onClick={() => {
-                setDisplayFilters(true)
+                return setDisplayFilters(false)
               }}
-            >
-              <small>Sort</small>
-              <i className="fa-solid fa-filter"></i>
-            </div>
-            <a
-              className="close-filter-menu"
-              onClick={() => {
-                setDisplayFilters(false)
-              }}
-            >
-              x
-            </a>
-
-            <div className="filter-options">
-              <div className="filter-color">
-                <span>By Price</span>
-                <div className="inputs">
-                  <input type="radio" name="radio-price" id="radioPriceLowToHigh" />
-                  Low to High
-                  <input type="radio" name="radio-price" id="radioPriceHighToLow" />
-                  High to Low
-                </div>
-              </div>
-              <div className="filter-type">
-                <span>By Volume ( L )</span>
-                <div className="inputs">
-                  <input type="radio" name="radio-price" id="radioVolumeLowToHigh" />
-                  Low to High
-                  <input type="radio" name="radio-price" id="radioVolumeHighToLow" />
-                  High to Low
-                </div>
-              </div>
-              <div className="buttons">
-                <button
-                  onClick={() => {
-                    setDisplayFilters(false)
-                    filterProducts()
-                    resetCheckboxes()
-                  }}
-                >
-                  Apply Filters
-                </button>
-                <button
-                  onClick={() => {
-                    resetCheckboxes()
-                    setCopyOfProducts(products.map((product) => product))
-                    setDisplayFilters(false)
-                  }}
-                >
-                  Clear Filters
-                </button>
-              </div>
-            </div>
+            ></i>
           </div>
         </div>
         <div className="special-offers-div">
-          {products.map((product) => {
-            if (product.color === '')
-              return (
-                <Product
-                  onAdd={onAdd}
-                  cartItems={cartItems}
-                  product={product}
-                  id={product.id}
-                  key={product.id}
-                  name={product.name}
-                  price={
-                    currency === 'ron'
-                      ? product.price
-                      : currency === 'euro'
-                      ? (product.price * 100) / 4.95 / 100
-                      : currency === 'dollar'
-                      ? (product.price * 100) / 4.69 / 100
-                      : ''
-                  }
-                  type={product.type}
-                  volume={product.volume}
-                  currencySign={currencySign}
-                  quantity={product.quantity}
-                  img={product.img}
-                  imgWidth={product.imgWidth}
-                />
-              )
+          {specialProducts.map((product) => {
+            return (
+              <Product
+                onAdd={onAdd}
+                cartItems={cartItems}
+                product={product}
+                id={product.id}
+                key={product.id}
+                name={product.name}
+                price={
+                  currency === 'ron'
+                    ? product.price
+                    : currency === 'euro'
+                    ? (product.price * 100) / 4.95 / 100
+                    : currency === 'dollar'
+                    ? (product.price * 100) / 4.69 / 100
+                    : ''
+                }
+                type={product.type}
+                volume={product.volume}
+                currencySign={currencySign}
+                quantity={product.quantity}
+                img={product.img}
+                imgWidth={product.imgWidth}
+              />
+            )
           })}
         </div>
       </div>
+
+      <i
+        className="fa-solid fa-angles-right"
+        id="sortMenuIcon"
+        onClick={() => {
+          let sortIcon = document.getElementById('sortMenuIcon')
+          let specialOffersWrapper = document.getElementById('specialOffersWrapper')
+          let filtersContainer = document.getElementById('filtersContainer')
+          if (isSortIconClicked) {
+            sortIcon.style.transform = 'rotate(0deg)'
+            setSortIconClicked(!isSortIconClicked)
+
+            filtersContainer.style.left = '-25%'
+
+            specialOffersWrapper.style.width = '100%'
+          } else {
+            sortIcon.style.transform = 'rotate(180deg)'
+            setSortIconClicked(!isSortIconClicked)
+            filtersContainer.style.left = '6%'
+            specialOffersWrapper.style.width = '80%'
+          }
+        }}
+      ></i>
     </>
   )
 }

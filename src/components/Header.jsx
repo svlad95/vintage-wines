@@ -26,7 +26,13 @@ function Header(props) {
   const currency = useSelector((state) => state.currency)
   let currencySign = ''
   function checkForCurrency() {
-    return currency === 'dollar' ? (currencySign = '$') : currency === 'euro' ? (currencySign = '€') : currency === 'ron' ? (currencySign = 'ron') : ''
+    return currency === 'dollar'
+      ? (currencySign = '$')
+      : currency === 'euro'
+      ? (currencySign = '€')
+      : currency === 'ron'
+      ? (currencySign = 'ron')
+      : ''
   }
   checkForCurrency()
   const dispatch = useDispatch()
@@ -74,15 +80,14 @@ function Header(props) {
     .map((product, key) => {
       return (
         <div className="search-product" key={key}>
-          <img src={product.img} width="20px" alt="" />
-
           <p>
             {`${product.name} `}
             {`${product.color} `}
             {`${product.type.replace('-', ' ')} `}
             {`(${product.volume}l)`}
           </p>
-          <small>{`${
+          <img src={product.img} width="110px" alt="" />
+          <small>{`Price: ${
             currency === 'ron'
               ? product.price.toFixed(2)
               : currency === 'euro'
@@ -90,7 +95,7 @@ function Header(props) {
               : currency === 'dollar'
               ? Math.abs((product.price / 4.69).toFixed(2))
               : ''
-          } ${currencySign}`}</small>
+          }`} <sup>{`${currencySign}`}</sup></small>
 
           <button
             className="search-add-to-cart"
@@ -113,9 +118,9 @@ function Header(props) {
                     } else {
                       //if the cartQty of the item is equal to the product overall quantity, display an alert (error)
                       alert(
-                        `There are only ${product.quantity} ${product.volume !== 10 ? 'bottles' : 'boxes'} of ${product.name} ${product.color} ${
-                          product.type
-                        } (${product.volume}L) available right now.`,
+                        `There are only ${product.quantity} ${product.volume !== 10 ? 'bottles' : 'boxes'} of ${
+                          product.name
+                        } ${product.color} ${product.type} (${product.volume}L) available right now.`,
                       )
                     }
                   }
@@ -129,7 +134,7 @@ function Header(props) {
               }
             }}
           >
-            Add
+            Add to Cart
           </button>
         </div>
       )
@@ -138,7 +143,6 @@ function Header(props) {
   function showSearchMenu() {
     let searchInputField = document.getElementById('search-input')
     searchInputField.style.width = '60%'
-
     searchInputField.style.opacity = 1
     searchInputField.focus()
   }
@@ -147,7 +151,16 @@ function Header(props) {
     searchInputField.style.width = '0px'
     searchInputField.style.opacity = 0
     setisSearchDivDisplayed(false)
-    searchInput.value = ''
+    //this has to be removed
+    try {
+      searchInput.value = ''
+    } catch (err) {
+      console.log(err)
+      console.log('Nice find! This was the easy one(')
+    }
+
+    //This is the fix, below, lets see who finds out the bug
+    // if (searchInput !== null) searchInput.value = ''
   }
 
   // UsEffect hook to show/hide the search div
@@ -267,7 +280,11 @@ function Header(props) {
       {/* Search Results Div*/}
       <div className="search-results" id="search-results">
         <div className="search-results-container">
-          {searchBarProductsFiltered.length === 0 ? <div className="no-results-div">No results found</div> : searchBarProductsFiltered}
+          {searchBarProductsFiltered.length === 0 ? (
+            <div className="no-results-div">No results found</div>
+          ) : (
+            searchBarProductsFiltered
+          )}
         </div>
       </div>
       {/* Mobile menu */}

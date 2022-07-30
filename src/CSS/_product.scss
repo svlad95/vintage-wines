@@ -1,6 +1,6 @@
 .product-card {
-  width: 210px;
-  height: 350px;
+  width: 200px;
+  height: 330px;
   background: $backgroundColor;
   text-align: center;
   transition: 0.4s all;
@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 0px 6px 1px #4a332d71;
+ 
   border-radius: 2px;
   padding: 15px 0px;
   color: $brownColor;
@@ -23,9 +24,9 @@
     font-size: 16px;
     letter-spacing: 1px;
   }
-  img {
-    width: 120px;
-  }
+  // img {
+  //   width: 120px;
+  // }
   .add-to-cart {
     display: flex;
     align-items: center;
@@ -51,8 +52,9 @@
 }
 
 @media all and (min-width: 1240px) {
-  .special-offer-card {
-    width: 260px;
+  .product-card {
+    width: 240px;
+    height: 390px;
 
     h6 {
       font-size: 19px;

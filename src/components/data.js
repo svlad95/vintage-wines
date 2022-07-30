@@ -13,6 +13,10 @@ import redWine from '../assets/RedWine.png'
 import roseWine from '../assets/RoseWine.png'
 import savoyRumImg from '../assets/SavoyRum.png'
 import tequillaOlmecaImg from '../assets/TequillaOlmeca.png'
+import AkashiImg from '../assets/Akashi.png'
+import CedarRidgeImg from '../assets/CedarRidge.png'
+import SheridanImg from '../assets/Sheridan.png'
+import ChateauGloriaImg from '../assets/ChateauGloria.png'
 
 let tohaniPricePerL = 13.2
 let moldovaPricePerL = 15.7
@@ -30,7 +34,7 @@ let data = {
       volume: 0.7,
       quantity: 4,
       img: captainMorganImg,
-      imgWidth: 180,
+      imgWidth: 140,
     },
     {
       id: 1,
@@ -41,7 +45,7 @@ let data = {
       volume: 0.5,
       quantity: 6,
       img: stalinskayaImg,
-      imgWidth: 180,
+      imgWidth: 130,
     },
     {
       id: 2,
@@ -52,7 +56,7 @@ let data = {
       volume: 0.7,
       quantity: 7,
       img: jackDanielsImg,
-      imgWidth: 150,
+      imgWidth: 100,
     },
     {
       id: 3,
@@ -63,18 +67,18 @@ let data = {
       volume: 0.7,
       quantity: 5,
       img: jimBeamImg,
-      imgWidth: 180,
+      imgWidth: 120,
     },
     {
       id: 4,
-      name: 'Absolute Vodka',
+      name: 'Absolute',
       color: '',
       price: 49.99,
       type: 'Vodka',
       volume: 0.7,
       quantity: 3,
       img: absoluteImg,
-      imgWidth: 180,
+      imgWidth: 110,
     },
     {
       id: 5,
@@ -85,7 +89,7 @@ let data = {
       volume: 0.7,
       quantity: 5,
       img: jaggerImg,
-      imgWidth: 200,
+      imgWidth: 140,
     },
     {
       id: 6,
@@ -96,7 +100,7 @@ let data = {
       volume: 0.7,
       quantity: 2,
       img: hennessyImg,
-      imgWidth: 180,
+      imgWidth: 130,
     },
     {
       id: 7,
@@ -107,7 +111,7 @@ let data = {
       volume: 0.33,
       quantity: 9,
       img: strongbowGold,
-      imgWidth: 160,
+      imgWidth: 130,
     },
     {
       id: 8,
@@ -118,7 +122,7 @@ let data = {
       volume: 0.7,
       quantity: 2,
       img: aviationGinImg,
-      imgWidth: 170,
+      imgWidth: 130,
     },
     {
       id: 9,
@@ -129,7 +133,7 @@ let data = {
       volume: 0.33,
       quantity: 11,
       img: strongbowBerries,
-      imgWidth: 160,
+      imgWidth: 130,
     },
     {
       id: 76,
@@ -140,18 +144,62 @@ let data = {
       volume: 0.7,
       quantity: 5,
       img: savoyRumImg,
-      imgWidth: 160,
+      imgWidth: 130,
     },
     {
       id: 77,
       name: 'Olmeca Plata',
       color: '',
-      type: 'Tequilla',
+      type: 'whiskey',
       price: 89.99,
-      volume: 0.7,
+      volume: 0.5,
       quantity: 3,
       img: tequillaOlmecaImg,
-      imgWidth: 160,
+      imgWidth: 140,
+    },
+    {
+      id: 78,
+      name: 'Akashi Meisei',
+      color: '',
+      type: 'Whiskey',
+      price: 169.99,
+      volume: 0.5,
+      quantity: 2,
+      img: AkashiImg,
+      imgWidth: 130,
+    },
+    {
+      id: 79,
+      name: `Chateau Gloria`,
+      color: '',
+      type: 'Wine',
+      price: 569.99,
+      volume: 1,
+      quantity: 1,
+      img: ChateauGloriaImg,
+      imgWidth: 140,
+    },
+    {
+      id: 80,
+      name: 'Cedar Ridge',
+      color: '',
+      type: 'Whiskey',
+      price: 309.99,
+      volume: 0.7,
+      quantity: 3,
+      img: CedarRidgeImg,
+      imgWidth: 130,
+    },
+    {
+      id: 81,
+      name: `Sheridan's`,
+      color: '',
+      type: 'Whiskey',
+      price: 99.99,
+      volume: 1.25,
+      quantity: 3,
+      img: SheridanImg,
+      imgWidth: 130,
     },
     {
       id: 10,
